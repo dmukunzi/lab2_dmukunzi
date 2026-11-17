@@ -95,12 +95,20 @@ def evaluate_grades(data):
        for item in failed:
            if item['weight'] == highest:
                  resubmit.append(item)
-
-pass
+     # TODO: f) Print the final decision (PASSED / FAILED) and resubmission options
+    print(f"Formative:{formative_score:.2f} / {formative_weight} ({formative_percentage:.2f}%)")
+    print(f"Summative:{summative_score:.2f} / {summative_weight} ({summative_percentage:.2f}%)")
+    print(f"Final grade: {total_score:.2f} / 100 ({total_score:.2f}%)")
+    print(f"GPA: {gpa:.2f}")
+    print(f"\nFinal Decision: {'PASSED' if passed else 'FAILED'}")
+ 
+    if resubmit:
+         print("\nEligible for resubmission:")
+         for item in resubmit:
+             print(f"- {item['assignment']} (Score: {item['score']}, Weight: {item['weight']})")
+    else:
+             print("\n No failed formative assignments. No resubmission options available.")
 
 if __name__ == "__main__":
-    # 1. Load the data
     course_data = load_csv_data()
-    
-    # 2. Process the features
     evaluate_grades(course_data)
