@@ -71,13 +71,19 @@ def evaluate_grades(data):
     if not (grades_valid and weights_valid):
          print("\nError: grade and weight validation failed. Recheck the grades CSV file and run again.")
          sys.exit(1)
- # TODO: c) Calculate the Final Grade and GPA
+     
+     # TODO: c) Calculate the Final Grade and GPA
     formative_score =sum(i['score'] * i['weight'] / 100 for i in formative)
     summative_score =sum(i['score'] * i['weight'] / 100 for i in summative)
   
     total_score = formative_score + summative_score
     gpa = (total_score / 100) * 5.0
-   
+
+     # TODO: d) Determine Pass/Fail status (>= 50% in BOTH categories)
+    formative_percentage = round(formative_score / formative_weight * 100, 6)
+    summative_percentage = round(summative_score / summative_weight * 100, 6)
+    passed = formative_percentage >= 50 and summative_percentage >= 50
+
 pass
 
 if __name__ == "__main__":
