@@ -48,7 +48,32 @@ def evaluate_grades(data):
             print(f"Invalid score found: {item['score']} for assignment '{item['assignment']}'")
             grades_valid = False
 
-    # TODO: b) Validate total weights (Total=100, Summative=40, Formative=60)
+ # TODO: b) Validate total weights (Total=100, Summative=40, Formative=60)
+    formative = [i for i in data if i['group']. strip().lower() == 'formative']
+    summative = [i for i in data if i['group'].strip().lower() == 'summative']
+    unidentified = len(data) - len(formative) - len(summative)
+    if unidentified > 0:
+         print(f"Warning: {unidentified} assignment(s) have an unrecognized group.will be ignored in calculations.")
+    total_weight = round(sum(i['weight'] for i in data), 2)
+    formative_weight = round(sum(i['weight'] for i in formative), 2)
+    summative_weight = round(sum(i['weight'] for i in summative), 2)
+ 
+    weights_valid = unidentified == 0 
+    if total_weight != 100:
+         print(f"Error: total weight: {total_weight}. The expected is: 100.")
+         weights_valid = False
+    if formative_weight != 60:
+         print(f"Error: formative weight: {formative_weight}. The expected is: 60.")
+         weights_valid = False
+    if summative_weight != 40:
+         print(f"Error: summative weight: {summative_weight}. The expected is: 40.")
+         weights_valid = False
+    if not (grades_valid and weights_valid):
+         print("\nError: grade and weight validation failed. Recheck the grades CSV file and run again.")
+         sys.exit(1)
+
+    
+
    
 pass
 
