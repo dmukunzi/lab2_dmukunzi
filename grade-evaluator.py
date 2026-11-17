@@ -37,16 +37,20 @@ def evaluate_grades(data):
     'data' is a list of dictionaries containing the assignment records.
     """
     print("\n--- Processing Grades ---")
-    
+
+    if not data:
+        print("There are no assignement grades in the file.")
+        sys.exit(1)
     # TODO: a) Check if all scores are percentage based (0-100)
+    grades_valid = True 
+    for item in data:
+        if not (0 <= item['score'] <= 100):
+            print(f"Invalid score found: {item['score']} for assignment '{item['assignment']}'")
+            grades_valid = False
+
     # TODO: b) Validate total weights (Total=100, Summative=40, Formative=60)
-    # TODO: c) Calculate the Final Grade and GPA
-    # TODO: d) Determine Pass/Fail status (>= 50% in BOTH categories)
-    # TODO: e) Check for failed formative assignments (< 50%)
-    #          and determine which one(s) have the highest weight for resubmission.
-    # TODO: f) Print the final decision (PASSED / FAILED) and resubmission options
-    
-    pass
+   
+pass
 
 if __name__ == "__main__":
     # 1. Load the data
