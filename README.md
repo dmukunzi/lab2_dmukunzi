@@ -66,7 +66,6 @@ B.Part 2: Organizer.sh script
 bash
 chmod +x organizer.sh   # only needed once, makes the script executable
 ./organizer.sh
-```
 
 Run it from the project folder, because it looks for "grades.csv" in the current directory.
 
@@ -75,18 +74,18 @@ Run it from the project folder, because it looks for "grades.csv" in the current
 1.Archive directory check
 Looks for a directory named "archive". If it does not exist, the script creates it.
 2. Missing file check
-If `grades.csv` cannot be found, the script prints an error and exits instead of archiving nothing.
+If "grades.csv" cannot be found, the script prints an error and exits instead of archiving nothing.
 3. Timestamped archiving
-Generates a timestamp in the format "YYYYMMDD-HHMMSS", renames "grades.csv" to "grades_<timestamp>.csv", and moves it into the "archive" directory. Because every file gets a unique timestamp, earlier archives are never overwritten.
+Generates a timestamp in the format "YYYYMMDD-HHMMSS", renames "grades.csv", and moves it into the "archive" directory. Because every file gets a unique timestamp, earlier archives are never overwritten.
 4. Workspace reset
 Immediately after the move, creates a new empty "grades.csv" in the current directory so the workspace is ready for the next batch of grades.
 5. Logging
 Appends an entry to "organizer.log" containing the timestamp, the original filename, and the new archived filename. The log accumulates entries from every run, giving a history of all archived files.
 
 # Workflow
-1. Place the grades to be evaluated in `grades.csv`.
-2. Run the evaluator: `python3 grade-evaluator.py`
-3. Run the organizer: `./organizer.sh`
-4. Add the next batch of grades to the new `grades.csv` and repeat from step 2.
+1. Place the grades to be evaluated in "grades.csv".
+2. Run the evaluator: "python3 grade-evaluator.py"
+3. Run the organizer: "./organizer.sh"
+4. Add the next batch of grades to the new "grades.csv" and repeat from step 2.
 
-Always run the evaluator before the organizer, because the organizer empties grades.csv. If the evaluator is run on an empty grades.csv, it reports that there are no assignment grades in the file. To evaluate a previously archived batch, enter its path when the evaluator asks for a filename, for example `archive/grades_20261117-221500.csv`.
+Always run the evaluator before the organizer, because the organizer empties grades.csv. If the evaluator is run on an empty grades.csv, it reports that there are no assignment grades in the file 
