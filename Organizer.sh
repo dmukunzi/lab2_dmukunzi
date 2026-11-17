@@ -1,8 +1,8 @@
 #!/bin/bash
 
-ARCHIVE_DIR = "archive"
-LOG_FILE = "organizer.log"
-DATA_SOURCE = "grades.csv"
+ARCHIVE_DIR="archive"
+LOG_FILE="organizer.log"
+DATA_SOURCE="grades.csv"
 
 if [ ! -d "$ARCHIVE_DIR" ]; then
     mkdir "$ARCHIVE_DIR"
@@ -14,8 +14,8 @@ if [ ! -f "$DATA_SOURCE" ]; then
     exit 1
 fi
 
-Timestamp = $(date +"%Y-%m-%d_%H-%M-%S")
-Updated_file = "grades_${Timestamp}.csv"
+Timestamp=$(date +"%Y%m%d_%H%M%S")
+Updated_file="grades_${Timestamp}.csv"
 
 mv "$DATA_SOURCE" "$ARCHIVE_DIR/$Updated_file"
 echo "File $DATA_SOURCE has been moved to $ARCHIVE_DIR/$Updated_file successfully."
