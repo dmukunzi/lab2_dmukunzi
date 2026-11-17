@@ -84,6 +84,18 @@ def evaluate_grades(data):
     summative_percentage = round(summative_score / summative_weight * 100, 6)
     passed = formative_percentage >= 50 and summative_percentage >= 50
 
+     # TODO: e) Check for failed formative assignments (< 50%)
+    failed = [i for i in formative if i['score'] < 50]
+    resubmit = []
+    if failed:
+       highest =0
+       for item in failed:
+           if item['weight'] > highest:
+              highest = item ['weight']
+       for item in failed:
+           if item['weight'] == highest:
+                 resubmit.append(item)
+
 pass
 
 if __name__ == "__main__":
